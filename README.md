@@ -1,1 +1,2 @@
 # Sensors-on-Mobile-App
+You can download installable apk file from https://github.com/maltintas45/Sensors-on-Mobile-App/raw/master/app/release/app-release.apk. This application requires to use sensors and GPS to collect data and wifi network to send data. Please, report bugs that you encounter while using it. You can use https://github.com/maltintas45/Sensors-on-Mobile-App/issues page for this purpose. Thanks for your contribution. 
