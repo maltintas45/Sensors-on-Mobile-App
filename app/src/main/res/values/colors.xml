@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00ffef</color>
+    <color name="colorPrimaryDark">#00ffef</color>
+    <color name="colorAccent">#00ffef</color>
+    <color name="background">#ffffff</color>
+    <color name="actionSitting"> #c96112</color>
+    <color name="actionWalking">#8E24AA</color>
+    <color name="actionJogging">#448AFF</color>
+    <color name="actionUpstairs">#009688</color>
+    <color name="actionDownstairs">#CDDC39</color>
+    <color name="actionStanding">#795548</color>
+</resources>

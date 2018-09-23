@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">sm</string>
+    <string name="action_settings">settıngs</string>
+    <string name="settings">settıngs</string>
+    <string name="prediction">predıctıon</string>
+    <string name="statistics">statıstıcs</string>
+    <string name="sensors">sensors</string>
+    <string name="data">data</string>
+    <string name="enter_nick_name">Enter a nickname</string>
+    <string name="enter_explanation">Enter an explanation that defines data</string>
+    <string name="send_data">send data</string>
+    <string name="info">You are considered to have accepted the use of your personal data using this app. Thanks..</string>
+    <string name="db_does_not_exist">Database file does not exist!</string>
+    <string name="unable_to_upload">Unable to upload!</string>
+    <string name="there_is_not_internet_connection">Unfortunately, the internet connection is not available!</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="service_open_close">Contribute to data collection</string>
+    <string name="thanks_contribution">Thanks for your contribution.</string>
+    <string name="glad_to">We are glad you contributed us. Cheers.</string>
+    <string name="sensor_explanation">Number of sensor detected is %1$d.</string>
+    <string name="location_provider_is_not_avaible">Sorry, you do not have any location provider.</string>
+    <string name="auto_sent_collected_data">Send data automatically while using wifi connection</string>
+    <string name="manual_sent_collected_data">Send data manually</string>
+    <string name="auto_send_opened">We are looking for your wifi connection to send data.</string>
+    <string name="auto_send_closed">You can sent data what ever you want. We respect your privacy.</string>
+    <string-array name="languages_array">
+        <item>Arabic</item>
+        <item>Chinese</item>
+        <item>English</item>
+        <item>Korean</item>
+        <item>Spanish</item>
+        <item>Turkish</item>
+        <item>Urdu</item>
+    </string-array>
+    <string-array name="report_type_array">
+        <item>Daily</item>
+        <item>Personal</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

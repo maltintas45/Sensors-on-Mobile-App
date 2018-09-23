@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity$PlaceholderFragment"
+    android:background="@color/background">
+
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1">
+
+
+        <TableRow>
+
+            <EditText
+                android:id="@+id/nickName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_nick_name"
+                android:layout_span="2"/>
+
+        </TableRow>
+        <TableRow>
+            <RadioGroup
+                android:id="@+id/radioGrpGender"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_span="2">
+                <RadioButton
+                    android:id="@+id/radioM"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:checked="true"
+                    android:drawableRight="@drawable/male"
+                    android:layout_weight="1"
+                    android:textSize="14dp"
+                    android:text="Male"
+                    />
+                <RadioButton
+                    android:id="@+id/radioF"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:checked="false"
+                    android:drawableRight="@drawable/female"
+                    android:layout_weight="1"
+                    android:textSize="14dp"
+                    android:text="Female"
+                    />
+            </RadioGroup>
+        </TableRow>
+        <TableRow>
+
+            <EditText
+                android:id="@+id/explanation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_explanation"
+                android:layout_span="2"/>
+
+        </TableRow>
+        <TableRow>
+            <View
+                android:layout_width="wrap_content"
+                android:background="@drawable/gradient"
+                android:layout_height="1dp"
+                android:layout_span="2"></View>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:text="@string/service_open_close"
+                android:layout_column="0"
+                android:gravity="left|center_vertical"
+                android:padding="5dp" />
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textOn="contribute"
+                android:textOff="keep"
+                android:showText="false"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:text="@string/auto_sent_collected_data"
+                android:layout_column="0"
+                android:gravity="left|center_vertical"
+                android:padding="5dp" />
+
+
+
+            <Switch
+                android:id="@+id/switch2"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textOn="contribute"
+                android:textOff="keep"
+                android:showText="false"
+                android:checked="true"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:text="@string/manual_sent_collected_data"
+                android:layout_column="0"
+                android:gravity="left|center_vertical"
+                android:padding="5dp" />
+            <Button
+                android:id="@+id/senddata"
+                android:text="@string/send_data"
+                android:padding="5dp"
+                android:layout_width="wrap_content"/>
+
+        </TableRow>
+
+    </TableLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>
