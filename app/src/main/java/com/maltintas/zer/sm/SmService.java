@@ -1,6 +1,7 @@
 package com.maltintas.zer.sm;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.Service;
@@ -42,6 +43,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
 import com.maltintas.zer.sm.FeedReaderContract.FeedEntry;
 
 import java.io.File;
@@ -72,7 +74,9 @@ public class SmService extends Service implements SensorEventListener {
     double longitudeNetwork, latitudeNetwork;
     double accx = 0, accy = 0, accz = 0, gyrx = 0, gyry = 0, gyrz = 0, light = 0, proximity = 0;
 
+
     public SmService() {
+
     }
 
     @Override
@@ -83,8 +87,6 @@ public class SmService extends Service implements SensorEventListener {
 
     @Override
     public void onCreate() {
-
-
     }
 
     @Override
@@ -155,7 +157,27 @@ public class SmService extends Service implements SensorEventListener {
         }
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
+
+        up=new UploadDataTask();
         mAuth=FirebaseAuth.getInstance();
+
+        mAuth.signInAnonymously()
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("Firebase :", "signInAnonymously:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("Firebase :", "signInAnonymously:failure", task.getException());
+                            Toast.makeText(getApplicationContext(), "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
         // active listen to user logged in or not.
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -226,7 +248,7 @@ public class SmService extends Service implements SensorEventListener {
         }
         db.close();
         if(isUploadRequired() & isNetworkConvenient( getBaseContext())) {
-            up=new UploadDataTask();
+
             if (up.getStatus()!=AsyncTask.Status.RUNNING) {
                 up.execute( 0 );
                 Toast.makeText( this, "Uploading files..", Toast.LENGTH_SHORT ).show();
@@ -243,10 +265,11 @@ public class SmService extends Service implements SensorEventListener {
     public boolean isUploadRequired()
     {
         // If the db size over 10 MB uploading is required
+        int SIZE_THRESHOLD=10000;
         File file = new File("/data/data/com.maltintas.zer.sm/databases/"+FeedReaderDbHelper.DATABASE_NAME);
         int file_size = Integer.parseInt(String.valueOf(file.length()/1024));
 
-        if (file_size>10000)
+        if (file_size>SIZE_THRESHOLD)
             return true;
         else
             return false;
@@ -399,6 +422,7 @@ public class SmService extends Service implements SensorEventListener {
         protected void onPostExecute(String result) {
             if (data_is_ready)
                 uploadFileFireBase( file, mStorageRef,biggestSendedID);
+            up=new UploadDataTask();
         }
 
         @Override
