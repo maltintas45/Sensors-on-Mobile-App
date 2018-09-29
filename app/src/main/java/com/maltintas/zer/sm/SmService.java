@@ -247,13 +247,12 @@ public class SmService extends Service implements SensorEventListener {
             Log.e("ERROR", e.toString());
         }
         db.close();
-        if(isUploadRequired() & isNetworkConvenient( getBaseContext())) {
-
-            if (up.getStatus()!=AsyncTask.Status.RUNNING) {
-                up.execute( 0 );
-                Toast.makeText( this, "Uploading files..", Toast.LENGTH_SHORT ).show();
-            }
-        }
+        if(isUploadRequired())
+            if(isNetworkConvenient( getBaseContext() ))
+                if (up.getStatus()!=AsyncTask.Status.RUNNING) {
+                    up.execute( 0 );
+                    Toast.makeText( this, "Uploading files..", Toast.LENGTH_SHORT ).show();
+                }
 
         //Toast.makeText(this, longitudeGPS+" "+latitudeGPS, Toast.LENGTH_SHORT).show();
     }
@@ -265,7 +264,7 @@ public class SmService extends Service implements SensorEventListener {
     public boolean isUploadRequired()
     {
         // If the db size over 10 MB uploading is required
-        int SIZE_THRESHOLD=10000;
+        int SIZE_THRESHOLD=10;
         File file = new File("/data/data/com.maltintas.zer.sm/databases/"+FeedReaderDbHelper.DATABASE_NAME);
         int file_size = Integer.parseInt(String.valueOf(file.length()/1024));
 
@@ -276,14 +275,21 @@ public class SmService extends Service implements SensorEventListener {
     }
     public boolean isNetworkConvenient(Context context)
     {
-        ConnectivityManager cm =
-                (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        try {
+            ConnectivityManager cm =
+                    (ConnectivityManager) context.getSystemService( Context.CONNECTIVITY_SERVICE );
 
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean isConnected = activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
-        boolean isWifi=activeNetwork.getType() == ConnectivityManager.TYPE_WIFI;
-        return isConnected & isWifi;
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+            boolean isConnected = activeNetwork != null &&
+                    activeNetwork.isConnectedOrConnecting();
+            boolean isWifi = activeNetwork.getType() == ConnectivityManager.TYPE_WIFI;
+            return isConnected & isWifi;
+        }
+        catch (Exception e)
+        {
+            return false;
+
+        }
     }
 
     public  void  onDestroy(){
@@ -315,7 +321,8 @@ public class SmService extends Service implements SensorEventListener {
         dialog.show();
     }
     public boolean isInternetAvailable() {
-        try {
+        try
+        {
             InetAddress ipAddr = InetAddress.getByName("google.com");
             //You can replace it with your name
             return !ipAddr.equals("");
